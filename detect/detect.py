@@ -1,3 +1,5 @@
+ #!/usr/bin/env python
+ 
 from tensorflow.keras.applications.vgg16 import VGG16
 import os 
 import zipfile 

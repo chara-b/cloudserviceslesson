@@ -22,7 +22,26 @@ if image already exists locally no need to download it again so run the containe
 docker run -v //var/run/docker.sock:/var/run/docker.sock -p 3233:3233 -p 3232:3232 f32250d71024
 ------
 
+build docker image
 
+1
+docker build -t image-name .
+run docker image
+
+1
+docker run -p 80:80 -it image-name
+stop all docker containers
+
+1
+docker stop $(docker ps -a -q)
+remove all docker containers
+
+1
+docker rm $(docker ps -a -q)
+remove all docker images
+
+1
+docker rmi $(docker images -q)
 
 
 

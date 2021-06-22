@@ -48,7 +48,7 @@ https://igorsramos.com/serverless-node-red/
 https://dzone.com/articles/running-openwhisk-actions-from-node-red
 https://stackoverflow.com/questions/49170203/openwhisk-and-minio-with-packaged-action-issue
 http://heidloff.net/article/how-to-create-docker-actions-openwhisk-bluemix
-
+https://stackoverflow.com/questions/33322103/multiple-froms-what-it-means
 
 
 

@@ -1,9 +1,9 @@
 # install ubuntu and wget too !
-FROM ubuntu:14.04
-WORKDIR /wgettool
-RUN  apt-get update \
-  && apt-get install -y wget \
-  && rm -rf /var/lib/apt/lists/*
+#FROM ubuntu:14.04
+#WORKDIR /wgettool
+#RUN  apt-get update \
+  #&& apt-get install -y wget \
+  #&& rm -rf /var/lib/apt/lists/*
 
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3.8-slim-buster as libs
@@ -41,14 +41,14 @@ COPY --from=libs .    .
 # after this date
 #ENV REFRESHED_AT 2021-09-05T13:59:39Z
 # Add all source assets
-ADD . /action
+ADD ./detect /action
 # Rename our executable Python action
-ADD detect.py /action/exec
+ADD ./detect/detect.py /action/exec
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
 RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
-#EXPOSE 3000
+EXPOSE 3000
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 #CMD ["python", "detect.py"]
 

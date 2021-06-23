@@ -42,7 +42,7 @@ app.post('/run', function (req, res) {
       console.log('Usage: node ' + process.argv[1] + ' FILENAME');
       process.exit(1);
    }
-   // Read the file and print its contents.
+   // Read the file and print its contents. // index 0 is the node interpreter and index 1 is the script running on that nodeso index 2 is the actual parameter here 
    filename = process.argv[2];
    fs.readFile(filename, 'utf8', function(err, file) {
      if (err) throw err;

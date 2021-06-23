@@ -68,10 +68,10 @@ https://dzone.com/articles/running-openwhisk-actions-from-node-red
 https://stackoverflow.com/questions/49170203/openwhisk-and-minio-with-packaged-action-issue
 http://heidloff.net/article/how-to-create-docker-actions-openwhisk-bluemix
 https://stackoverflow.com/questions/33322103/multiple-froms-what-it-means
+https://stackoverflow.com/questions/9168737/read-a-text-file-using-node-js
+https://www.npmjs.com/package/handwritten.js
 
-
-
-
+https://www.npmjs.com/package/minio
 
 
 

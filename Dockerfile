@@ -1,4 +1,5 @@
-FROM node:12.18-alpine as libs
+FROM node:12.18-alpine 
+#as libs
 
 ENV NODE_ENV=production
 
@@ -13,14 +14,15 @@ RUN npm install body-parser
 RUN pip install handwritten
 RUN pip install minio
 
-FROM openwhisk/dockerskeleton
+#FROM openwhisk/dockerskeleton
 
-COPY --from=libs . .
+#COPY --from=libs . .
 
 # Add all source assets
-ADD . /action
+#ADD . /action
+COPY . .
 
-ADD handwritting.js /action/
+#ADD handwritting.js /action/
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
@@ -30,4 +32,5 @@ USER appuser
 
 EXPOSE 3000
 
-CMD ["node", "/action/handwritting.js"]
+CMD ["node", "handwritting.js"]
+#CMD ["node", "/action/handwritting.js"]

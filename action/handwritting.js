@@ -63,6 +63,8 @@ app.post('/run', function (req, res) {
     minioClient.fPutObject('handwritting', filename, convertedfile, meta, function(err, etag) {
       if (err) return console.log(err)
       console.log('File uploaded successfully.')
+      var result = { 'result' : { 'success' : 'File uploaded successfully.', 'presigned_url_payload' : payload} }; 
+      res.status(200).json(result);
     });
    })
    });

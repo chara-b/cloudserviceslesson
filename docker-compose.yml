@@ -11,11 +11,21 @@ services:
     #ports:
       #- 3000:3000
 # name of our dockerized action
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - action
   action:
       # current directory is where our projects root
       build: .
       # docker hub account repo
       image: 214168/handwrittingeffect # rename me!
+      restart: always
       # expose ports
       ports:
       - "3000:3000"

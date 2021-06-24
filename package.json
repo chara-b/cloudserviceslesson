@@ -1,0 +1,23 @@
+{
+  "name": "handwritting",
+  "version": "1.0.0",
+  "description": "cloud services lesson",
+  "main": "handwritting.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chara-b/cloudserviceslesson.git"
+  },
+  "author": "chara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chara-b/cloudserviceslesson/issues"
+  },
+  "homepage": "https://github.com/chara-b/cloudserviceslesson#readme"
+}

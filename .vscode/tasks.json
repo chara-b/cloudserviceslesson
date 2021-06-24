@@ -4,9 +4,8 @@
 		{
 			"type": "docker-build",
 			"label": "docker-build",
-			"platform": "python",
+			"platform": "node",
 			"dockerBuild": {
-				"tag": "detect:latest",
 				"dockerfile": "${workspaceFolder}/Dockerfile",
 				"context": "${workspaceFolder}",
 				"pull": true
@@ -18,9 +17,23 @@
 			"dependsOn": [
 				"docker-build"
 			],
-			"python": {
-				"file": "detect.py"
+			"dockerRun": {
+				"env": {
+					"DEBUG": "*",
+					"NODE_ENV": "development"
+				}
+			},
+			"node": {
+				"enableDebugging": true
 			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: release",
+			"dependsOn": [
+				"docker-build"
+			],
+			"platform": "node"
 		}
 	]
 }

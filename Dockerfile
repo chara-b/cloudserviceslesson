@@ -20,7 +20,7 @@ RUN pip install minio
 
 # Add all source assets
 #ADD . /action
-COPY . .
+COPY ./action .
 
 #ADD handwritting.js /action/
 

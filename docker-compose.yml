@@ -1,12 +1,21 @@
 version: '3.4'
 
 services:
-  handwritting:
-    image: handwritting
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
-    ports:
-      - 3000:3000
+  #handwritting:
+    #image: handwritting
+    #build:
+      #context: .
+      #dockerfile: ./Dockerfile
+    #environment:
+      #NODE_ENV: production
+    #ports:
+      #- 3000:3000
+# name of our dockerized action
+  action:
+      # current directory is where our projects root
+      build: .
+      # docker hub account repo
+      image: 214168/handwrittingeffect # rename me!
+      # expose ports
+      ports:
+      - "3000:3000"

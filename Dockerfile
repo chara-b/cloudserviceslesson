@@ -19,8 +19,8 @@ COPY --from=libs . .
 
 # Add all source assets
 ADD . /action
-# Rename our executable Python action
-ADD handwritting.js /action/exec
+
+ADD handwritting.js /action/
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
@@ -30,4 +30,4 @@ USER appuser
 
 EXPOSE 3000
 
-CMD ["node", "handwritting.js"]
+CMD ["node", "/action/handwritting.js"]

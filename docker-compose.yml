@@ -24,7 +24,7 @@ services:
       # current directory is where our projects root
       build: .
       # docker hub account repo
-      image: 214168/handwrittingeffect # rename me!
+      image: 214168/handwrittingeffect 
       restart: always
       # expose ports
       ports:

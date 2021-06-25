@@ -32,11 +32,11 @@ app.post('/run', function (req, res) {
    var result = { 'result' : { 'msg' : 'echo', 'payload' : payload} }; 
    res.status(200).json(result);*/
    var meta = (req.body || {}).meta;
-   console.log(req.body)
-   console.log(req)
+   console.log('req body: ' + req.body)
+   console.log('req: ' + req)
    var value = (req.body || {}).value;
    var payload = value.payload; 
-   console.log(payload)
+   console.log('payload: ' + payload)
    if (typeof payload != 'string'){
       payload = JSON.stringify(payload);
    }

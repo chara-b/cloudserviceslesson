@@ -9,7 +9,7 @@ const fs = require('fs')
 var Minio = require('minio')
 
 var minioClient = new Minio.Client({
-   endPoint: 'http://localhost',
+   endPoint: 'http://127.0.0.1',
    port: 9000,
    useSSL: false,
    accessKey: 'minioadmin',
@@ -35,6 +35,7 @@ app.post('/run', function (req, res) {
 
    var value = (req.body || {}).value;
    var payload = value.payload; 
+   console.log(payload)
    if (typeof payload != 'string'){
       payload = JSON.stringify(payload);
    }

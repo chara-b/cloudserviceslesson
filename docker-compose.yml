@@ -11,13 +11,13 @@ services:
     #ports:
       #- 3000:3000
 # name of our dockerized action
-  minio:
-    image: bitnami/minio:latest
-    restart: always
-    volumes:
-      - /path/to/minio-persistence:/data
-    ports:
-      - "9000:9000"
+  #minio:
+    #image: bitnami/minio:latest
+    #restart: always
+    #volumes:
+      #- /path/to/minio-persistence:/data
+    #ports:
+      #- "9000:9000"
   nginx:
     image: nginx:latest
     restart: always

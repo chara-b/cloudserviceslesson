@@ -9,7 +9,7 @@ const fs = require('fs')
 var Minio = require('minio')
 
 var minioClient = new Minio.Client({
-   endPoint: 'minio',
+   endPoint: '127.0.0.1',
    port: 9000,
    useSSL: false,
    accessKey: 'minioadmin',

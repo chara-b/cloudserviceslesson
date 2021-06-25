@@ -71,11 +71,16 @@ app.post('/run', function (req, res) {
 
        //converted.pipe(fs.createWriteStream('output.pdf'))
        // Using fPutObject API upload your file to the bucket europetrip.
-    minioClient.fPutObject('handwritting', filename, "/usr/src/app/"+filename, meta, function(err, etag) {
+    minioClient.fPutObject('handwritting', filename, "/usr/src/app/"+filename, {'x-amz-meta-filename': meta["filename"]},  function(err, etag) {
       if (err) return console.log(err)
       console.log('File uploaded successfully.')
-      var result = { 'result' : { 'success' : 'File uploaded successfully.', 'presigned_url_payload' : payload} }; 
-      res.status(200).json(result);
+  //var result = { 'result' : { 'success' : 'File uploaded successfully.', 'presigned_url_payload' : payload} }; 
+     // res.status(200).json(result);
+     // res.set({
+      //   'Content-Type': 'application/json',
+      //    'Authorization': 'Basic 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP'
+    //  })
+      res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
     });
    })
    });

@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 const http = require('http');
 
-const handwritten = require('handwritten')
+
 const fs = require('fs')
 var Minio = require('minio')
 
@@ -59,6 +59,7 @@ app.post('/run', function (req, res) {
      if (err) throw err;
      console.log('OK: ' + filename);
      //console.log(data)
+     const handwritten = require('handwritten.js')
      handwritten(file).then((convertedfile) => {
        //converted.pipe(fs.createWriteStream('output.pdf'))
        // Using fPutObject API upload your file to the bucket europetrip.

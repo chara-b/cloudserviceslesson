@@ -11,7 +11,7 @@ COPY ["package.json", "./"]
 RUN npm install jimp
 RUN npm install express
 RUN npm install body-parser
-RUN npm install handwritten
+RUN npm install handwritten.js
 RUN npm install minio
 
 #FROM openwhisk/dockerskeleton

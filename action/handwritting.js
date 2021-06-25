@@ -61,9 +61,17 @@ app.post('/run', function (req, res) {
      //console.log(data)
      const handwritten = require('handwritten.js')
      handwritten(file).then((convertedfile) => {
+
+      fs.writeFile("/usr/src/app/"+filename, convertedfile, function (err) {
+         if (err) {
+             return console.log(err);
+         }
+         console.log("The file was saved!");
+     });
+
        //converted.pipe(fs.createWriteStream('output.pdf'))
        // Using fPutObject API upload your file to the bucket europetrip.
-    minioClient.fPutObject('handwritting', filename, convertedfile, meta, function(err, etag) {
+    minioClient.fPutObject('handwritting', filename, "/usr/src/app/"+filename, meta, function(err, etag) {
       if (err) return console.log(err)
       console.log('File uploaded successfully.')
       var result = { 'result' : { 'success' : 'File uploaded successfully.', 'presigned_url_payload' : payload} }; 

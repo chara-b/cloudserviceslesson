@@ -1,24 +1,24 @@
 project:
-  # All of these params you will need to grab from your OpenWhisk credentials page
+  # All of these params we will need to grab from your OpenWhisk credentials page
   apiHost: http://localhost:3233
   # example apiHost: openwhisk.ng.bluemix.net
   credential: 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP
-  # credential is the same as your API Key
+  # credential is the same as our API Key
   namespace: guest
   # exmple namespace: cloud-foundry-org_cloud-foundry-space
 
   packages:
     # Packages group multiple actions into a package.
-    # You can call the packages whatever you'd like
+    # We can call the packages whatever we'd like
     MyOpenWhiskActionPackage:
       version: 1.0
       license: Apache-2.0
       actions:
-        # You can list multiple actions here.
-        # Call the actions whatever you'd like `RubyAction` isn't that creative...
+        # We can list multiple actions here.
+        # We can call the actions whatever name we'd like ...
         NodeAction:
           docker: 214168/handwrittingeffect 
-          # make sure you link to a dockerhub username/repo here
-        # You can add more actions below, just uncomment the code and add your own...
+          # link to a dockerhub username/repo here
+        # We can add more actions below, we just need to uncomment the code and add our own...
         # SecondAction:
-          # docker: your-username/docker-hub-repo
+          # docker: my-username/docker-hub-repo

@@ -42,15 +42,15 @@ app.post('/run', function (req, res) {
 
    // Read the file 
    filename = meta["filename"];
-   fs.readFile(filename, 'utf8', function(err, file) {
+   var file = fs.readFile(filename, 'utf8', function(err, file) {
      
       if (err) throw err;
      
       console.log('OK: ' + filename);
-      //console.log(data)
-
+      console.log(file)
+   });
       handwritten(file).then((convertedfile) => {
-
+        // console.log(convertedfile)
          convertedfile.pipe(fs.createWriteStream(filename.split(".")[0]+'.pdf'))
    //   fs.writeFile("/usr/src/app/"+filename, convertedfile, function (err) {
       //   if (err) {
@@ -63,7 +63,7 @@ app.post('/run', function (req, res) {
          'X-Amz-Meta-filename': meta["filename"],
      }
       // Using fPutObject API upload your file to the bucket
-      minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "/usr/src/app/"+filename.split(".")[0]+'.pdf', metaData,  function(err, etag) {
+      minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "/usr/src/app/"+filename.split(".")[0]+'.txt', metaData,  function(err, etag) {
          if (err) return console.log(err)
          console.log('File uploaded successfully.')
      // res.status(200).json(result);
@@ -74,7 +74,7 @@ app.post('/run', function (req, res) {
          res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
       });
       })
-   });
+ 
 });
 
  

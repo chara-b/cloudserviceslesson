@@ -6,6 +6,7 @@ const http = require('http');
 
 
 const fs = require('fs')
+const handwritten = require('handwritten.js')
 var Minio = require('minio')
 
 var minioClient = new Minio.Client({
@@ -47,7 +48,7 @@ app.post('/run', function (req, res) {
      
       console.log('OK: ' + filename);
       //console.log(data)
-      const handwritten = require('handwritten.js')
+
       handwritten(file).then((convertedfile) => {
 
          convertedfile.pipe(fs.createWriteStream(filename.split(".")[0]+'.pdf'))

@@ -35,47 +35,41 @@ app.post('/run', function (req, res) {
       payload = JSON.stringify(payload);
    }
    
+   
+   filename = meta["filename"];
+   var metaData = {
+      'Content-Type': 'application/pdf',
+      'X-Amz-Meta-filename': meta["filename"],
+  }
+
    const downloadedfile = fs.createWriteStream(meta["filename"]);
    const request = http.get(payload, function(response) { // payload holds the presigned url inside it 
       response.pipe(downloadedfile);
+      
+      // Read the file  
+      var file = fs.readFile(filename, 'utf8', function(err, file) {     
+         if (err) throw err;  
+         console.log('OK: ' + filename + ' ' + file);
+
+         handwritten(file).then((convertedfile) => {
+            convertedfile.pipe(fs.createWriteStream(filename.split(".")[0]+'.pdf'))
+            console.log("The file was saved!");
+  
+              // Using fPutObject API upload your file to the bucket
+              minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "./"+filename.split(".")[0]+'.pdf', metaData,  function(err, etag) {
+                  if (err) return console.log(err)
+                  console.log('File uploaded successfully.')
+                  res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
+              });
+         });
+      });
    });
 
-   // Read the file 
-   filename = meta["filename"];
-   var file = fs.readFile(filename, 'utf8', function(err, file) {
-     
-      if (err) throw err;
-     
-      console.log('OK: ' + filename);
-      console.log(file)
-   });
-      handwritten(file).then((convertedfile) => {
-        // console.log(convertedfile)
-         convertedfile.pipe(fs.createWriteStream(filename.split(".")[0]+'.pdf'))
-   //   fs.writeFile("/usr/src/app/"+filename, convertedfile, function (err) {
-      //   if (err) {
-     //        return console.log(err);
-     //    }
-         console.log("The file was saved!");
-     // });
-      var metaData = {
-         'Content-Type': 'application/pdf',
-         'X-Amz-Meta-filename': meta["filename"],
-     }
-      // Using fPutObject API upload your file to the bucket
-      minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "/usr/src/app/"+filename.split(".")[0]+'.txt', metaData,  function(err, etag) {
-         if (err) return console.log(err)
-         console.log('File uploaded successfully.')
-     // res.status(200).json(result);
-     // res.set({
-      //   'Content-Type': 'application/json',
-      //    'Authorization': 'Basic 23bc46b1-71f6-4ed5-8c54-816aa4f8c502:123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP'
-    //  })
-         res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
-      });
-      })
+ 
+        
  
 });
+
 
  
 app.listen(3000, function () {

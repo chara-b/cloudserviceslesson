@@ -52,13 +52,16 @@ app.post('/run', function (req, res) {
          console.log('OK: ' + filename + ' ' + file);
 
          handwritten(file).then((convertedfile) => {
-            convertedfile.pipe(fs.createWriteStream(filename.split(".")[0]+'.pdf'))
-            console.log("The file was saved!");
-  // Using fPutObject API upload your file to the bucket
-  minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "/usr/src/app/"+filename.split(".")[0]+'.pdf', metaData,  function(err, etag) {
-   if (err) return console.log(err)
-   console.log('File uploaded successfully.')
-   res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
+           var stream = convertedfile.pipe(fs.createWriteStream(filename.split(".")[0]+'.pdf'))
+            
+            stream.on('finish', function () { 
+                  console.log("The file was saved!");
+                  // Using fPutObject API upload your file to the bucket
+                  minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "/usr/src/app/"+filename.split(".")[0]+'.pdf', metaData,  function(err, etag) {
+                     if (err) return console.log(err)
+                     console.log('File uploaded successfully.')
+                     res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
+                  });
 })
               
          });

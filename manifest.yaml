@@ -19,13 +19,14 @@ project:
         action:
           docker: 214168/handwrittingeffect 
           web-export: true
+        # link to a dockerhub username/repo here
+        # We can add more actions below, we just need to uncomment the code and add our own...
+        # SecondAction:
+        # docker: my-username/docker-hub-repo
       apis:
         action-api:
           action:
             sequence:
               action:
                 method: POST
-          # link to a dockerhub username/repo here
-        # We can add more actions below, we just need to uncomment the code and add our own...
-        # SecondAction:
-          # docker: my-username/docker-hub-repo
+        

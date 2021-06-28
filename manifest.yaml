@@ -18,6 +18,13 @@ project:
         # We can call the actions whatever name we'd like ...
         action:
           docker: 214168/handwrittingeffect 
+          web-export: true
+      apis:
+        action-api:
+          action:
+            sequence:
+              action:
+                method: POST
           # link to a dockerhub username/repo here
         # We can add more actions below, we just need to uncomment the code and add our own...
         # SecondAction:

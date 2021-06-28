@@ -60,6 +60,10 @@ app.post('/run', function (req, res) {
                   minioClient.fPutObject('handwritting', filename.split(".")[0]+'.pdf', "/usr/src/app/"+filename.split(".")[0]+'.pdf', metaData,  function(err, etag) {
                      if (err) return console.log(err)
                      console.log('File uploaded successfully.')
+                     res.set({
+                        'Access-Control-Allow-Origin': '*',        
+                        'Content-Type': 'application/json'
+                      })
                      res.send({ 'X-Amz-Content-success' : 'File uploaded successfully.' });
                   });
 })
